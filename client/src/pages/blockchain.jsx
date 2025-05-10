@@ -6,6 +6,7 @@ import first from "../assets/Blockchain/first.png";
 import second from "../assets/Blockchain/second.png";
 import third from "../assets/Blockchain/third.png";
 import fourth from "../assets/Blockchain/fourth.png";
+import SearchFilters from "../components/topmenu";
 
 const steps = [
   {
@@ -60,18 +61,7 @@ function Blockchain() {
     <div className={`bg-white-bluish w-full flex `}>
       <Menu />
       <div className={`grow flex flex-col justify-start`}>
-        <div className="w-full h-32 px-8 flex justify-between items-center">
-          <div></div>
-          <div></div>
-          <div className="flex gap-4 justify-center items-center hover:cursor-pointer">
-            <img
-              className="w-16 h-16 border border-black rounded-full"
-              src={require("../assets/bank.png")}
-              alt=""
-            />
-            <p className="text-black">ABC Bank</p>
-          </div>
-        </div>
+        <SearchFilters />
         <div className="relative flex flex-row h-[600px] justify-evenly items-center">
           {steps.map((step, index) => (
             <div

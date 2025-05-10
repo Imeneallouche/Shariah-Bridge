@@ -2,6 +2,10 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from enum import Enum
+from werkzeug.security import generate_password_hash, check_password_hash
+
+db = SQLAlchemy()
+
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///shariahchain.db"
@@ -52,12 +56,22 @@ class Profile(db.Model):
     country_id = db.Column(db.Integer, db.ForeignKey("country.id"), nullable=False)
     contact_info = db.Column(db.String(256))
     public_key = db.Column(db.Text)
+
+    # new field for authentication
+    password_hash = db.Column(db.String(128), nullable=False)
+
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(
         db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow
     )
     client_requests = db.relationship("ClientRequest", backref="bank")
     validations = db.relationship("ValidationRecord", backref="validator")
+
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
 
 
 class ClientRequest(db.Model):

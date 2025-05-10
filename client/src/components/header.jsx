@@ -15,10 +15,17 @@ export default function Header() {
         <div className="w-1/2 text-xl flex flex-col justify-center items-start px-16">
           <div className="mb-8">
             <h1 className="text-6xl font-extrabold leading-tight">
-              <span className="block text-indigo-500">Al Buraq</span>
+              <span className="block text-indigo-500">Shariah Bridge</span>
             </h1>
           </div>
-          <h2>Al Buraq is the next-generation AI + blockchain platform.</h2>
+          <h2>
+            Shariah Bridge is an AI-and-blockchain-powered platform designed to
+            streamline and accelerate the validation of Islamic finance products
+            under AAOIFI standards. What once took months of paperwork and
+            layered approvals now completes in minutes, without sacrificing
+            rigor or transparency.
+          </h2>
+          <br />
           <br />
           <h2>
             It intelligently maps bespoke client requests to AAOIFI standards,

@@ -23,12 +23,14 @@ export default function AccAssistantPage() {
           </div>
         </div>
         <div className="h-full w-full flex flex-col p-5">
-          <div className="flex-1 flex justify-center items-center">
+          <div className="flex-1 flex justify-center items-center scrollbar-hide overflow-y-auto">
+            {/*
             <img
               className="w-96"
               src={require("../assets/chatbot.png")}
               alt=""
-            />
+                      />
+                      */}
           </div>
           <Prompt />
         </div>
