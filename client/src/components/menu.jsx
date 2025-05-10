@@ -5,15 +5,29 @@ const Menu = () => {
   const [open, setOpen] = useState(true);
 
   const Menus = [
-    { title: "Dashboard", src: "user", Path: "/Dashboard" },
+    { title: "Dashboard", src: "dashboard", Path: "/Dashboard" },
     {
-      title: "Contracts Generation",
-      src: "user",
-      Path: "/Generation",
-      gap: true,
+      title: "Accounting Assistant",
+      src: "accountingassistant",
+      Path: "/AccountingAssistant",
     },
-    { title: "Contracts Validation", src: "user", Path: "/Validation" },
-    { title: "Blockchain", src: "user", Path: "/Blockchain" },
+    {
+      title: "Reverse Transaction",
+      src: "reversetransaction",
+      Path: "/ReverseTransaction",
+    },
+    {
+      title: "Standard Review",
+      src: "standardreview",
+      Path: "/StandardReview",
+    },
+    {
+      title: "Contracts Generator",
+      src: "contractgenerator",
+      Path: "/ContractsGenerator",
+    },
+    { title: "Contracts", src: "contracts", Path: "/Contracts" },
+    { title: "Blockchain", src: "blockchain", Path: "/Blockchain" },
     { title: "Profile", src: "user", Path: "/Profile" },
     { title: "Log Out", src: "logout", Path: "/", gap: true },
   ];
@@ -21,33 +35,40 @@ const Menu = () => {
   return (
     <div className="flex">
       <div
-        className={` bg-gradient-to-b from-indigo-700 to-indigo-700 h-screen p-5  pt-8 relative duration-300 SideBar ${
-          open ? "w-64" : "w-20 "
+        className={`flex flex-col bg-gradient-to-b from-purple-700 to-purple-700 h-screen px-4 py-16 relative duration-300 SideBar ${
+          open ? "w-80" : "w-24 "
         }`}
       >
         <img
           src={require("../assets/SideBar/control.png")}
           alt="controller"
-          className={`absolute cursor-pointer -right-3 top-9 w-7 border-indigo-800
+          className={`absolute cursor-pointer -right-3 top-9 w-7 border-purple-800
            border-2 rounded-full  ${!open && "rotate-180"}`}
           onClick={() => setOpen(!open)}
         />
-        <div className="flex gap-x-4 items-center">
-          <img
-            src={require("../assets/SideBar/user.png")}
-            alt="Logo"
-            className={`cursor-pointer duration-500  ${
-              open && "rotate-[360deg]"
-            }`}
-          />
+        <div className="flex">
+          <a
+            href="/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full flex  rounded-md cursor-pointer text-gray-300 text-sm items-center gap-x-4"
+          >
+            <img
+              src={require("../assets/logo.png")}
+              alt="Logo"
+              className={`cursor-pointer duration-500  ${
+                open && "rotate-[360deg]"
+              }`}
+            />
+          </a>
         </div>
 
-        <ul className="pt-10 flex flex-col justify-between">
+        <ul className="pt-10 flex flex-col flex-1 justify-between">
           {Menus.map((Menu, index) => (
             <li
               key={index}
               className={`flex rounded-md p-2 cursor-pointer text-gray-300 text-sm items-center gap-x-4 hover:bg-gray-400/10
-              ${Menu.gap ? "mt-10" : "mt-2"} ${
+              ${Menu.gap ? "mt-16" : "mt-2"} ${
                 index === 0 && "bg-light-white"
               } `}
             >

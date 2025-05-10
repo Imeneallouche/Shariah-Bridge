@@ -29,14 +29,14 @@ export default function Header() {
 
           <div className="mt-12 flex space-x-4">
             <button
-              onClick={() => navigate("/simulate")}
+              onClick={() => navigate("/SignUp")}
               className="py-4 px-16 bg-indigo-500 rounded flex items-center text-white font-semibold justify-center hover:bg-purple-500 transition"
             >
               Sign Up
             </button>
 
             <button
-              onClick={() => navigate("/documentation")}
+              onClick={() => navigate("/SignIn")}
               className="py-4 px-16 bg-white text-indigo-600 border-2 border-indigo-600 rounded hover:border-purple-500 hover:text-purple-500 transition font-semibold"
             >
               Sing In
