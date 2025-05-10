@@ -70,40 +70,52 @@ The single **BIGGEST** challenge facing Islamic banks compared to their conventi
 
 ```mermaid
 flowchart TB
-  subgraph Client
-    U[User via React/Tailwind UI]
+ subgraph A["Client Interface"]
+        C1["Web/Mobile UI"]
+        C2["API Layer GraphQL"]
   end
-  subgraph Backend
-    API[Flask API]
-    DB[PostgreSQL]
-    AI[RAG & LLM Connector]
-    XAI[Explainable AI Logger]
+ subgraph B["AI Layer"]
+    direction TB
+        B1["RAG Retrieval Module"]
+        B2["LLM Contract Synthesizer"]
+        B3["Human-in-Loop Review UI"]
+        B4["Explainable AI & Audit Logger"]
+        B5["Compliance Monitor"]
   end
-  subgraph Fabric
-    IBN[Internal Board Node]
-    NBN[National Board Node]
-    CBN[Central Bank Node]
-    BAPS[BAPS Chaincode]
-    DAO[Fatwa Token Chaincode]
-    REG[Contract Registry Chaincode]
-    NOT[Notification Chaincode]
+ subgraph C["Blockchain Consortium"]
+    direction LR
+        C1A["Bank Committee Node"]
+        C1B["National Banks Node"]
+        C1C["Central Bank Node"]
+        C2A["Multi-Sig Workflow SC"]
+        C2B["Fatwa DAO & Token SC"]
+        C3["IPFS Contract Storage"]
   end
-
-  U -->|Submit use case| API
-  API --> AI: fetch clauses & draft contract
-  API --> XAI: log draft rationale
-  API --> DB: save request & draft
-  U -->|Review edits| API
-  API --> XAI: log edits
-  API --> Fabric: REG.RegisterContract
-  Fabric --> API: confirmation
-  U -->|Request approval| API
-  API --> Fabric: BAPS.SubmitVote
-  API --> Fabric: BAPS.CheckConsensus
-  Fabric --> API: consensus event
-  Fabric --> API: REG.UpdateStatus
-  Fabric --> API: NOT.Broadcast
-  Fabric --> U: real-time notifications
+ subgraph D["Integration & Orchestration"]
+    direction TB
+        D1["Kafka Event Bus"]
+        D2["Microservices Spring Boot/NestJS"]
+        D3["PostgreSQL Metadata"]
+        D4["Elasticsearch Audit Logs"]
+        D5["OAuth2/HashiCorp Vault"]
+  end
+    C1 -- submit request --> B1
+    B1 -- retrieves AAOIFI clauses --> B2
+    B2 -- draft contract --> B3
+    B3 -- edits & approve --> B2
+    B2 -- final contract --> D2
+    D2 -- store metadata --> D3
+    B2 -- log decision --> B4
+    B4 -- audit logs --> D4
+    D1 --> C2A & C2B & C3 & B5
+    C2A -- approval --> D1
+    C2B -- fatwa token --> B1
+    C3 -- contract docs --> C2B
+    D2 -- events --> D1
+    B5 -- alerts --> D2
+    C1 --> C1
+    D4 --> D3
+    D --> n1["Untitled Node"]
 ```
 
 ---
@@ -117,8 +129,60 @@ flowchart TB
 * **ClientRequest**: incoming use cases (standard flag, JSON payload, status)
 * **Contract**: generated documents (content, on\_chain flag, status)
 * **ValidationRecord**: per-node votes (level, decision, rationale, timestamp)
-
 (Automatically created via SQLAlchemy models + Alembic migrations.)
+
+
+```mermaid
+erDiagram
+    COUNTRY ||--o{ PROFILE       : has
+    PROFILE ||--o{ CLIENT_REQUEST : submits
+    CLIENT_REQUEST ||--o{ CONTRACT  : generates
+    CONTRACT ||--o{ VALIDATION_RECORD : undergoes
+    PROFILE {
+      int id PK
+      string name
+      string type       "ENUM: bank, internal_board, national_board, central_bank"
+      int country_id FK
+      string contact_info
+      string public_key "for blockchain node signing"
+      timestamp created_at
+      timestamp updated_at
+    }
+    COUNTRY {
+      int id PK
+      string name
+      string code       "ISO2 or ISO3"
+    }
+    CLIENT_REQUEST {
+      int id PK
+      int profile_id FK "Bank initiating request"
+      bool is_standard "True if covered by AAOIFI"
+      string standard_code FK "e.g. FAS28"
+      string use_case_json "raw client input"
+      enum status    "pending|auto_approved|in_review|completed|rejected"
+      timestamp created_at
+      timestamp updated_at
+    }
+    CONTRACT {
+      int id PK
+      int request_id FK
+      text content   "Rendered contract document"
+      bool on_chain  "True once submitted for blockchain validation"
+      enum status   "draft|on_chain|approved|rejected"
+      timestamp created_at
+      timestamp updated_at
+    }
+    VALIDATION_RECORD {
+      int id PK
+      int contract_id FK
+      int validator_profile_id FK
+      enum level    "1|2|3"
+      enum decision "approved|rejected"
+      text reason
+      timestamp decided_at
+    }
+```
+
 
 ---
 
