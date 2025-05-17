@@ -6,27 +6,18 @@ const Menu = () => {
 
   const Menus = [
     { title: "Dashboard", src: "dashboard", Path: "/Dashboard" },
+
     {
-      title: "Accounting Assistant",
-      src: "accountingassistant",
-      Path: "/AccountingAssistant",
-    },
-    {
-      title: "Reverse Transaction",
+      title: "Chatbot Assistant",
       src: "reversetransaction",
-      Path: "/ReverseTransaction",
-    },
-    {
-      title: "Standard Review",
-      src: "standardreview",
-      Path: "/StandardReview",
+      Path: "/Assistant",
     },
     {
       title: "Contracts Generator",
       src: "contractgenerator",
       Path: "/ContractsGenerator",
     },
-    { title: "Contracts", src: "contracts", Path: "/Contracts" },
+    { title: "Products", src: "contracts", Path: "/Products" },
     { title: "Blockchain", src: "blockchain", Path: "/Blockchain" },
     { title: "Profile", src: "user", Path: "/Profile" },
     { title: "Log Out", src: "logout", Path: "/", gap: true },
@@ -35,24 +26,19 @@ const Menu = () => {
   return (
     <div className="flex">
       <div
-        className={`flex flex-col bg-gradient-to-b from-purple-700 to-purple-700 h-screen px-4 py-16 relative duration-300 SideBar ${
+        className={`flex flex-col bg-gradient-to-b from-sky-600 to-sky-600 h-screen px-8 py-3 relative duration-300 SideBar ${
           open ? "w-80" : "w-24 "
         }`}
       >
         <img
           src={require("../assets/SideBar/control.png")}
           alt="controller"
-          className={`absolute cursor-pointer -right-3 top-9 w-7 border-purple-800
+          className={`absolute cursor-pointer -right-3 top-9 w-7 border-sky-600
            border-2 rounded-full  ${!open && "rotate-180"}`}
           onClick={() => setOpen(!open)}
         />
         <div className="flex">
-          <a
-            href="/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full flex  rounded-md cursor-pointer text-gray-300 text-sm items-center gap-x-4"
-          >
+          <Link to="/">
             <img
               src={require("../assets/logo.png")}
               alt="Logo"
@@ -60,14 +46,14 @@ const Menu = () => {
                 open && "rotate-[360deg]"
               }`}
             />
-          </a>
+          </Link>
         </div>
 
         <ul className="pt-10 flex flex-col flex-1 justify-between">
           {Menus.map((Menu, index) => (
             <li
               key={index}
-              className={`flex rounded-md p-2 cursor-pointer text-gray-300 text-sm items-center gap-x-4 hover:bg-gray-400/10
+              className={`flex rounded-md p-2 cursor-pointer text-gray-300 text-base items-center gap-x-4 hover:bg-gray-400/10
               ${Menu.gap ? "mt-16" : "mt-2"} ${
                 index === 0 && "bg-light-white"
               } `}
@@ -77,7 +63,7 @@ const Menu = () => {
                   href={Menu.Path}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full flex  rounded-md cursor-pointer text-gray-300 text-sm items-center gap-x-4"
+                  className="w-full flex  rounded-md cursor-pointer text-gray-300 text-base items-center gap-x-4"
                 >
                   <img
                     src={require(`../assets/SideBar/${Menu.src}.png`)}
@@ -95,7 +81,7 @@ const Menu = () => {
               ) : (
                 <Link
                   to={Menu.Path}
-                  className="w-full flex  rounded-md cursor-pointer text-gray-300 text-sm items-center gap-x-4 "
+                  className="w-full flex  rounded-md cursor-pointer text-gray-300 text-base items-center gap-x-4 "
                 >
                   <img
                     src={require(`../assets/SideBar/${Menu.src}.png`)}

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { SearchNormal1 } from "iconsax-react";
 
-export default function SearchFilters() {
+export default function BlockchainFilters() {
   const [openDropdown, setOpenDropdown] = useState(null);
   const [progress, setProgress] = useState(0);
 
@@ -13,6 +13,9 @@ export default function SearchFilters() {
   return (
     <div className=" flex md:flex-row  items-center justify-between p-8 rounded-xl">
       {/* Search Bar */}
+      <h1 className="text-3xl font-semibold text-gray-900">
+        Product Validation Status
+      </h1>
       <div className="flex items-center bg-[#E5E5E5] px-4 py-3 rounded-lg w-full md:w-96  ">
         <SearchNormal1 size="20" color="#14532D" />
         <input
@@ -21,27 +24,22 @@ export default function SearchFilters() {
           className="bg-transparent outline-none px-3 text-gray-700 w-full"
         />
       </div>
-
       {/* Filter Buttons */}
       <div className="hidden md:flex md:flex-wrap md:gap-4">
         {/* Case Dropdown */}
         <Dropdown
-          label="Contract N° 74813"
+          label="Product ID"
           isOpen={openDropdown === "case"}
           onToggle={() => toggleDropdown("case")}
-          options={[
-            "Contract N° 96412",
-            "CContract N° 2478",
-            "Contract N° 13459",
-          ]}
+          options={["202500001", "202500002", "202500003"]}
         />
 
         {/* ONG Dropdown */}
         <Dropdown
-          label="Algeria"
+          label="Targeted Standard"
           isOpen={openDropdown === "ong"}
           onToggle={() => toggleDropdown("ong")}
-          options={["Saudi Arabia", "Indonisia", "Malisia"]}
+          options={["Mudaraba", "Musharaka", "Salem"]}
         />
 
         {/* Progress Status Dropdown */}
@@ -85,14 +83,6 @@ export default function SearchFilters() {
               </span>
             </div>
           )}
-        </div>
-        <div className="flex gap-4 justify-center items-center hover:cursor-pointer">
-          <img
-            className="w-16 h-16 border border-black rounded-full"
-            src={require("../assets/bank.png")}
-            alt=""
-          />
-          <p className="text-black">ABC Bank</p>
         </div>
       </div>
     </div>
