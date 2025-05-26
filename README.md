@@ -1,4 +1,4 @@
-# Al-Burāq: Next-Generation Shariah Compliance Platform
+# Shariah Bridge : Next-Generation Shariah Compliance Platform
 
 > “Verily, Allah commands you to render trusts to whom they are due.” (Quran 4:58)
 > In a world driven by profit, Al-Burāq ensures your financial products honor the sacred trust of Shariah compliance—swiftly, transparently, and collaboratively.
