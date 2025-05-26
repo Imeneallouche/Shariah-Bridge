@@ -16,7 +16,7 @@ The single **BIGGEST** challenge facing Islamic banks compared to their conventi
 
 ## ▶️ Introduction
 
-**Al-Burāq** is an AI-and-blockchain-powered platform designed to **streamline** and **accelerate** the validation of Islamic finance products under AAOIFI standards. What once took months of paperwork and layered approvals now completes in **minutes**, without sacrificing rigor or transparency. By combining advanced AI drafting, human-smart review, and a permissioned blockchain governance layer, Al-Burāq empowers Islamic banks to innovate confidently, serving clients with faith-aligned offerings faster than ever.
+**Shariah Bridge** is an AI-and-blockchain-powered platform designed to **streamline** and **accelerate** the validation of Islamic finance products under AAOIFI standards. What once took months of paperwork and layered approvals now completes in **minutes**, without sacrificing rigor or transparency. By combining advanced AI drafting, human-smart review, and a permissioned blockchain governance layer, Al-Burāq empowers Islamic banks to innovate confidently, serving clients with faith-aligned offerings faster than ever.
 
 ---
 
